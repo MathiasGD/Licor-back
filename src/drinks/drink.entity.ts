@@ -2,18 +2,18 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Drink {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 255 })
   nome: string;
 
-  @Column({ nullable: true })
-  descricao: string;
+  @Column({ type: 'text' })
+  modoPreparo: string;
 
-  @Column()
-  preco: number;
+  @Column({ type: 'numeric', precision: 10, scale: 2 })
+  precoBase: number;
 
-  @Column({ nullable: true })
-  imagemUrl: string;
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  descricao?: string;
 }
