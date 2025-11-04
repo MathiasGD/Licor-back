@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { ComposicaoDrink } from 'src/composicoes-drinks/composicao-drink.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()
 export class Drink {
@@ -17,6 +18,6 @@ export class Drink {
   @Column({ type: 'varchar', length: 255, nullable: true })
   descricao?: string;
 
-  @OneToMany(() => DrinkIngrediente, (di) => di.drink)
-  ingredientes: DrinkIngrediente[];
+  @OneToMany(() => ComposicaoDrink, (composicao) => composicao.drink)
+  ingredientes: ComposicaoDrink[];
 }

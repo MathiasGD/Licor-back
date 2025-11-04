@@ -6,7 +6,6 @@ import { DrinksModule } from './drinks/drinks.module';
 import { PedidosModule } from './pedidos/pedidos.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { PedidoItensModule } from './pedido-itens/pedido-itens.module';
-import { EquipesModule } from './equipes/equipes.module';
 import { EstoquesModule } from './estoques/estoques.module';
 import { IngredientesModule } from './ingredientes/ingredientes.module';
 import { ComposicoesDrinksModule } from './composicoes-drinks/composicoes-drinks.module';
@@ -27,7 +26,6 @@ import { ComposicoesDrinksModule } from './composicoes-drinks/composicoes-drinks
     PedidosModule,
     UsuariosModule,
     PedidoItensModule,
-    EquipesModule,
     EstoquesModule,
     IngredientesModule,
     ComposicoesDrinksModule,

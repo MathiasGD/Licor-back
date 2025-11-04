@@ -1,5 +1,12 @@
+import { ComposicaoDrink } from 'src/composicoes-drinks/composicao-drink.entity';
 import { Estoque } from 'src/estoques/estoque.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  OneToMany,
+} from 'typeorm';
 
 @Entity()
 export class Ingrediente {
@@ -17,4 +24,7 @@ export class Ingrediente {
 
   @OneToOne(() => Estoque, (estoque) => estoque.ingrediente)
   estoque: Estoque;
+
+  @OneToMany(() => ComposicaoDrink, (composicao) => composicao.ingrediente)
+  composicoes: ComposicaoDrink[];
 }
