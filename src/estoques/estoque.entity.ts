@@ -1,12 +1,5 @@
-import { Equipe } from 'src/equipes/equipe.entity';
 import { Ingrediente } from 'src/ingredientes/ingrediente.entity';
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  OneToMany,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
 
 @Entity()
 export class Estoque {
@@ -19,12 +12,6 @@ export class Estoque {
   @Column({ type: 'int' })
   quantidadeDisponivel: number;
 
-  @Column({ type: 'numeric', precision: 10, scale: 2 })
-  valorTotal: number;
-
-  @ManyToOne(() => Equipe, (equipe) => equipe.estoque)
-  equipe: Equipe;
-
-  @OneToMany(() => Ingrediente, (ingrediente) => ingrediente.estoque)
+  @OneToOne(() => Ingrediente, (ingrediente) => ingrediente.estoque)
   ingrediente: Ingrediente;
 }

@@ -16,4 +16,7 @@ export class Drink {
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   descricao?: string;
+
+  @OneToMany(() => DrinkIngrediente, (di) => di.drink)
+  ingredientes: DrinkIngrediente[];
 }

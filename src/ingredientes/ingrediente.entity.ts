@@ -1,5 +1,5 @@
 import { Estoque } from 'src/estoques/estoque.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
 
 @Entity()
 export class Ingrediente {
@@ -15,6 +15,6 @@ export class Ingrediente {
   @Column({ type: 'varchar', length: 255, nullable: true })
   descricao?: string;
 
-  @ManyToOne(() => Estoque, (e) => e.ingrediente)
+  @OneToOne(() => Estoque, (estoque) => estoque.ingrediente)
   estoque: Estoque;
 }

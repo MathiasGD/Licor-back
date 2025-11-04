@@ -1,17 +1,8 @@
-import { Equipe } from 'src/equipes/equipe.entity';
-import { Pedido } from 'src/pedidos/pedido.entity';
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany,
-  ManyToOne,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 export enum TipoUsuario {
   ADMIN = 'admin',
-  BARTENDER = 'bartender',
-  CLIENTE = 'cliente',
+  PROFISSIONAL = 'profissional',
 }
 
 @Entity()
@@ -33,10 +24,4 @@ export class Usuario {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   dataCadastro: Date;
-
-  @OneToMany(() => Pedido, (pedido) => pedido.cliente)
-  pedidosFeitos: Pedido[];
-
-  @ManyToOne(() => Equipe, (equipe) => equipe.participantes)
-  equipe: Equipe;
 }

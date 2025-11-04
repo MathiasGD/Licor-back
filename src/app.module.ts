@@ -9,6 +9,7 @@ import { PedidoItensModule } from './pedido-itens/pedido-itens.module';
 import { EquipesModule } from './equipes/equipes.module';
 import { EstoquesModule } from './estoques/estoques.module';
 import { IngredientesModule } from './ingredientes/ingredientes.module';
+import { ComposicoesDrinksModule } from './composicoes-drinks/composicoes-drinks.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { IngredientesModule } from './ingredientes/ingredientes.module';
     EquipesModule,
     EstoquesModule,
     IngredientesModule,
+    ComposicoesDrinksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
