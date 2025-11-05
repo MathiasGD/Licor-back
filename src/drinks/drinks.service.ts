@@ -22,7 +22,7 @@ export class DrinksService {
     return await this.drinksRepository.find();
   }
 
-  async getDrink(params: GetDrinkDto) {
+  async findOneById(params: GetDrinkDto) {
     return await this.drinksRepository.findOne({
       where: { id: params.id },
       relations: ['composicao', 'composicao.ingrediente'],
@@ -40,6 +40,10 @@ export class DrinksService {
     });
 
     const drink = await this.drinksRepository.save(drinkInstance);
+
+    if (!drink) {
+      throw new NotFoundException(`Falha ao salvar o drink`);
+    }
 
     for (const c of composicao) {
       const ingrediente = await this.ingredienteRepository.findOne({

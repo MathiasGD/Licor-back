@@ -13,11 +13,11 @@ export class DrinksController {
   }
 
   @Get('drink')
-  getDrink(@Query() data: GetDrinkDto) {
-    return this.drinksService.getDrink(data);
+  findOneById(@Query() data: GetDrinkDto) {
+    return this.drinksService.findOneById(data);
   }
 
-  @Post()
+  @Post('drink')
   save(@Body() data: PostDrinkDto) {
     return this.drinksService.save(data);
   }
