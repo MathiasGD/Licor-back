@@ -16,9 +16,6 @@ export class Ingrediente {
   @Column({ type: 'varchar', length: 255 })
   nome: string;
 
-  @Column({ type: 'varchar', length: 50 })
-  unidadeMedida: string;
-
   @Column({ type: 'varchar', length: 255, nullable: true })
   descricao?: string;
 

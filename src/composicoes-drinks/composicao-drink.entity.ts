@@ -7,10 +7,13 @@ export class ComposicaoDrink {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
+  @Column({ type: 'varchar', length: 50 })
+  unidadeMedida: string;
+
   @Column({ type: 'int' })
   quantidade: number;
 
-  @ManyToOne(() => Drink, (drink) => drink.ingredientes)
+  @ManyToOne(() => Drink, (drink) => drink.composicao)
   drink: Drink;
 
   @ManyToOne(() => Ingrediente, (ingrediente) => ingrediente.composicoes)

@@ -19,5 +19,6 @@ export class Drink {
   descricao?: string;
 
   @OneToMany(() => ComposicaoDrink, (composicao) => composicao.drink)
-  ingredientes: ComposicaoDrink[];
+  composicao: ComposicaoDrink[];
+  // ou receita: ComposicaoDrink[];
 }
