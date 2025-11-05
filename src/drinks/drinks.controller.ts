@@ -8,17 +8,17 @@ export class DrinksController {
   constructor(private readonly drinksService: DrinksService) {}
 
   @Get('drinks')
-  findAll() {
-    return this.drinksService.findAll();
+  getDrinks() {
+    return this.drinksService.getDrinks();
   }
 
   @Get('drink')
-  findOneById(@Query() data: GetDrinkDto) {
-    return this.drinksService.findOneById(data);
+  getDrink(@Query() data: GetDrinkDto) {
+    return this.drinksService.getDrink(data);
   }
 
   @Post('drink')
-  save(@Body() data: PostDrinkDto) {
-    return this.drinksService.save(data);
+  postDrink(@Body() data: PostDrinkDto) {
+    return this.drinksService.postDrink(data);
   }
 }

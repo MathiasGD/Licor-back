@@ -1,8 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindOptionsWhere, Repository } from 'typeorm';
 import { Drink } from './drink.entity';
-import { GetDrinkDto } from './dto/get/get-drink.dto';
 import { ComposicaoDrink } from 'src/composicoes-drinks/composicao-drink.entity';
 import { Ingrediente } from 'src/ingredientes/ingrediente.entity';
 import { PostDrinkDto } from './dto/post/post-drink.dto';
@@ -18,28 +17,26 @@ export class DrinksService {
     private readonly ingredienteRepository: Repository<Ingrediente>,
   ) {}
 
-  async findAll(): Promise<Drink[]> {
+  async getDrinks(): Promise<Drink[]> {
     return await this.drinksRepository.find();
   }
 
-  async findOneById(params: GetDrinkDto) {
+  async getDrink(params: FindOptionsWhere<Drink>) {
     return await this.drinksRepository.findOne({
-      where: { id: params.id },
+      where: params,
       relations: ['composicao', 'composicao.ingrediente'],
     });
   }
 
-  async save(data: PostDrinkDto) {
+  async postDrink(data: PostDrinkDto) {
     const { nome, modoPreparo, precoBase, descricao, composicao } = data;
 
-    const drinkInstance = this.drinksRepository.create({
+    const drink = await this.drinksRepository.save({
       nome,
       modoPreparo,
       precoBase,
       descricao,
     });
-
-    const drink = await this.drinksRepository.save(drinkInstance);
 
     if (!drink) {
       throw new NotFoundException(`Falha ao salvar o drink`);
@@ -55,14 +52,12 @@ export class DrinksService {
           `Ingrediente ${c.ingredienteId} não encontrado`,
         );
 
-      const composicao = this.composicaoRepository.create({
+      await this.composicaoRepository.save({
         drink,
         ingrediente,
         unidadeMedida: c.unidadeMedida,
         quantidade: c.quantidade,
       });
-
-      await this.composicaoRepository.save(composicao);
     }
   }
 }
