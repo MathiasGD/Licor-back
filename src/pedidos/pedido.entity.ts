@@ -4,9 +4,6 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 export enum StatusPedido {
   PENDENTE = 'pendente',
   ACEITO = 'aceito',
-  EM_PREPARO = 'em_preparo',
-  FINALIZADO = 'finalizado',
-  CANCELADO = 'cancelado',
 }
 
 @Entity()
