@@ -1,5 +1,11 @@
 import { Ingrediente } from 'src/ingredientes/ingrediente.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 
 @Entity()
 export class Estoque {
@@ -13,5 +19,6 @@ export class Estoque {
   quantidadeDisponivel: number;
 
   @OneToOne(() => Ingrediente, (ingrediente) => ingrediente.estoque)
+  @JoinColumn({ name: 'ingredienteId' })
   ingrediente: Ingrediente;
 }

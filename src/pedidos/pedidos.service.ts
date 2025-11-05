@@ -15,7 +15,9 @@ export class PedidosService {
   ) {}
 
   async getPedidos() {
-    return await this.pedidosRepository.find({ relations: ['drink'] });
+    return await this.pedidosRepository.find({
+      relations: ['drink', 'drink.composicao', 'drink.composicao.ingrediente'],
+    });
   }
 
   async postPedido(data: PostPedidoDto) {
