@@ -10,9 +10,11 @@ export class IngredientesService {
     private readonly ingredienteRepository: Repository<Ingrediente>,
   ) {}
 
-  async postIngrediente(
-    ingrediente: Partial<Ingrediente>,
-  ): Promise<Ingrediente> {
-    return await this.ingredienteRepository.save(ingrediente);
+  async getIngredientes(): Promise<Ingrediente[]> {
+    return await this.ingredienteRepository.find();
+  }
+
+  async postIngrediente(ingrediente: Partial<Ingrediente>) {
+    await this.ingredienteRepository.save(ingrediente);
   }
 }
