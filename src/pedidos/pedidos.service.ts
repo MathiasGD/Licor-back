@@ -20,6 +20,7 @@ export class PedidosService {
 
   async getPedidos() {
     return await this.pedidosRepository.find({
+      where: { status: StatusPedido.PENDENTE },
       relations: [
         'drink',
         'drink.composicao',
