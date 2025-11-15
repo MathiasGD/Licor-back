@@ -30,7 +30,12 @@ export class EstoquesService {
         `Ingrediente com id ${data.ingredienteId} não encontrado`,
       );
 
+    const estoqueExistente = await this.estoquesRepository.findOne({
+      where: { ingrediente },
+    });
+
     await this.estoquesRepository.save({
+      id: estoqueExistente ? estoqueExistente.id : undefined,
       quantidadeDisponivel: data.quantidadeDisponivel,
       ingrediente,
     });
