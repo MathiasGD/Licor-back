@@ -13,10 +13,11 @@ import { ComposicoesDrinksModule } from './composicoes-drinks/composicoes-drinks
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      url: process.env.DATABASE_URL,
+      // host: 'localhost',
       port: 5432,
       username: 'licor_user',
-      password: 'licorTCC',
+      password: process.env.DATABASE_PASSWORD,
       database: 'licor_db',
       autoLoadEntities: true,
       synchronize: true, // ⚠️ Somente em desenvolvimento
