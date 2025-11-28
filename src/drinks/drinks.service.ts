@@ -18,7 +18,9 @@ export class DrinksService {
   ) {}
 
   async getDrinks(): Promise<Drink[]> {
-    return await this.drinksRepository.find();
+    return await this.drinksRepository.find({
+      relations: ['composicao', 'composicao.ingrediente'],
+    });
   }
 
   async getDrink(params: FindOptionsWhere<Drink>) {

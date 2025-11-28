@@ -11,7 +11,7 @@ export class IngredientesService {
   ) {}
 
   async getIngredientes(): Promise<Ingrediente[]> {
-    return await this.ingredienteRepository.find();
+    return await this.ingredienteRepository.find({ relations: ['estoque'] });
   }
 
   async postIngrediente(ingrediente: Partial<Ingrediente>) {
