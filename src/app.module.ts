@@ -8,19 +8,24 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import { EstoquesModule } from './estoques/estoques.module';
 import { IngredientesModule } from './ingredientes/ingredientes.module';
 import { ComposicoesDrinksModule } from './composicoes-drinks/composicoes-drinks.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL,
       // host: 'localhost',
-      port: 5432,
-      username: 'licor_user',
-      password: process.env.DATABASE_PASSWORD,
-      database: 'licor_db',
+      // port: 5432,
+      // username: 'licor_user',
+      // password: 'FnZ4VBQ0SHN1lrDNjXbGO4NuZO9qZHtP',
+      // database: 'licor_db',
       autoLoadEntities: true,
       synchronize: true, // ⚠️ Somente em desenvolvimento
+      ssl: { rejectUnauthorized: false },
     }),
     DrinksModule,
     PedidosModule,
